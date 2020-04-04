@@ -4,6 +4,7 @@ import com.lawfirm.lawyer.model.Client;
 import com.lawfirm.lawyer.repository.LawyerRepository;
 import com.lawfirm.lawyer.services.LawyerInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 public class LawyerService implements LawyerInterface {
 

@@ -1,19 +1,14 @@
 package com.lawfirm.lawyer.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import javax.persistence.*;
-import java.util.Set;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Entity
+@Document( collection = "client")
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String nic;
     String firstName;
     String lastName;
@@ -25,10 +20,6 @@ public class Client {
     String type;
     String aboutCus;
     String country;
-
-    //    @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "client")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
 
     public String getNic() {
         return nic;
