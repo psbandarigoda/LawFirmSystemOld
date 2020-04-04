@@ -1,0 +1,97 @@
+<div class="wrapper">
+  <div class="sidebar" data-background-color="black" data-color="rose" data-image="assets/img/sidebar-1.jpg">
+    <div class="logo">
+      <a class="simple-text logo-normal" href="" style="margin-left: 30px">
+        Law Firm Lawyer
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li (click)="changeRoute(summary.innerHTML)" [ngClass]="{'active': headerText=='Summary'}" class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-home"></i>
+            <p #summary>Summary</p>
+          </a>
+        </li>
+        <li (click)="changeRoute(clientDetails.innerHTML)" [ngClass]="{'active': headerText=='Client Details'}" class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-user-edit"></i>
+            <p #clientDetails>Client Details</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+
+    <!--navbar-->
+    <nav class="navbar navbar-inverse navbar-expand-lg bg-dark sticky-top" role="navigation-demo">
+      <div class="container-fluid" style="width: 100%;">
+
+
+        <span onclick="openNav()" style="font-size:20px; margin-right: 10px; cursor:pointer">&#9776; {{headerText}} </span>
+
+
+        <!-- Modal -->
+
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <li class="nav-item">
+              {{curDate | date:'dd-MM-yyyy'}}&nbsp;&nbsp;
+            </li>&nbsp;
+            <li class="nav-item">
+              {{ time | date: 'hh:mm:ss a' }}
+            </li>&nbsp;
+
+            <li class="nav-item" style="margin-left: 5px;">
+              <a class="btn btn-rose btn-raised btn-fab btn-round" data-toggle="dropdown" href="#pablo">
+                <i class="fa fa-envelope"></i>
+              </a>
+            </li>
+            <li class="dropdown nav-item" style="margin-right: -5px">
+              <a class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" href="#pablo">
+                <div class="profile-photo-small">
+                  <img alt="Circle Image" class="rounded-circle img-fluid" src="assets/img/faces/avatar.jpg">
+                </div>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" id="WhoisCustomer">
+                <h6 class="dropdown-header">Dropdown header</h6>
+                <option class="dropdown-item" value="1">Retail Customer</option>
+                <option class="dropdown-item" value="2">wholesale Customer</option>
+                <a class="dropdown-item" href="#pablo">Sign out</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content" style="margin-top: -10px">
+      <router-outlet></router-outlet>
+    </div>
+    <footer class="footer">
+      <div class="container-fluid">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="http://pasindutech.blogspot.com">
+                PSTechInnovations(pvt)ltd
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>
+          made with by
+          <a href="http://pasindutech.blogspot.com" target="_blank">PS </a> for a better web.
+        </div>
+        <!-- your footer here -->
+      </div>
+    </footer>
+  </div>
+</div>

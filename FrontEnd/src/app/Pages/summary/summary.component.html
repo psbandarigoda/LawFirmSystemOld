@@ -1,0 +1,133 @@
+<div class="row">
+    <div class="col-xl-12 mb-30">
+        <div class="card card-statistics">
+            <div class="card-body h-center">
+                <div class="row">
+                <h4 class="col-md-9">Add New Client</h4>
+                <a class="btn btn-success col-md-2" (click)="AddClient()">Add Client <i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-6 mb-30">
+        <div class="card card-statistics">
+            <div class="card-body">
+                <h5 class="card-title">Inprogress</h5>
+                <div tabindex="3" style="overflow-y: hidden; outline: none;">
+                    <ul class="list-unstyled">
+                        <div *ngIf="incompleteItems.length > 0">
+                            <li class="mb-15 pb-15 bb-s" *ngFor="let item of incompleteItems">
+                                <div class="media">
+                                    <div class="position-relative ioc-s1 font-clr-blue">
+                                        <i class="fa fa-object-group"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="mt-0">{{item.factoryName}}<small
+                                                class="float-right">{{item.created_datetime | date: 'dd/MM/yyyy'}}</small></h6>
+                                        <div class="h-center">
+                                            <div class="flx-1"><span class="mr-1 font-bold">Status</span> <span>{{item.status}}</span></div>
+                                            <div class="btn p-1 btn-txt-green min-width-80 txt-center"><a (click)="routeToNextPage(item)">Continue</a>
+                                            </div>
+                                            <div class="btn ml-10 p-1 btn-txt-red min-width-80 txt-center"><a (click)="deleteItem(item)">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </div>
+                        <div *ngIf="incompleteItems.length === 0">
+                            <h6><i class="fa fa-info-circle" aria-hidden="true"></i>
+                                No incomplete factories</h6>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 mb-30">
+        <div class="card card-statistics">
+            <div class="card-body">
+                <h5 class="card-title">Completed</h5>
+                <div tabindex="3" style="overflow-y: hidden; outline: none;">
+                    <ul class="list-unstyled">
+                        <div *ngIf="completedItems.length > 0">
+                            <li class="mb-15 pb-15 bb-s" *ngFor="let item of completedItems">
+                                <div class="media">
+                                    <div class="position-relative ioc-s1 font-clr-blue">
+                                        <i class="fa fa-object-group"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="mt-0">{{item.factoryName}}<small
+                                                class="float-right">{{item.created_datetime | date: 'dd/MM/yyyy'}}</small></h6>
+                                        <div class="h-center">
+                                            <div class="flx-1"><span class="mr-1 font-bold">Token</span> <span>{{item.token}}</span></div>
+                                            <div class="p-1 btn-txt-blue min-width-80 txt-center"><a class="btn" data-toggle="modal"
+                                                                                                     data-target="#more-factory-info"
+                                                                                                     (click)="setSelectedSession(item)">More...</a>
+                                            </div>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="more-factory-info" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="modal-title" id="exampleModalLabel">
+                                                                <div>
+                                                                    <h6 class="font-bold">Factory Information</h6>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <h6 class="mb-2">Departments</h6>
+                                                                <div class="h-center bb-s pb-1">
+                                                                    <div class="flx-1 font-bold"><i class="fa fa-angle-right mr-2 font-clr-blue"></i>
+                                                                        Department name
+                                                                    </div>
+                                                                    <div class="badge badge-secondary">23 Lines</div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div>
+                                                                <div class="h-center">
+                                                                    <h6 class="mb-2 flx-1">Created Apps</h6>
+                                                                    <div class="ml-10 p-1 btn-txt-red txt-center"><a class="btn"
+                                                                                                                     (click)="deleteItem(item)">Delete
+                                                                        Apps</a></div>
+                                                                </div>
+                                                                <div class="h-center row m-0" *ngIf="item.apps && item.apps.apps">
+                                                                    <div class="app-bg mr-2 col-xl-2 mb-2" *ngFor="let app of item.apps.apps"><i
+                                                                            class="fa fa-mobile mr-2"></i> {{app.name}}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Modal -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </div>
+                        <div *ngIf="completedItems.length === 0">
+                            <h6><i class="fa fa-info-circle" aria-hidden="true"></i>
+                                No complete factories</h6>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

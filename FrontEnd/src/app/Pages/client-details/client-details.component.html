@@ -1,0 +1,231 @@
+<!--Add Details-->
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-rose">
+                        <div class="card-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4 class="card-title">Add Client -
+                            <small class="category">Complete your profile</small>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="form" name="form" >
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating"> Client NIC </label>
+                                        <input type="text" class="form-control" name="nic" [(ngModel)]="client.nic" minlength="2" maxlength="12" formControlName="nic" [ngClass]="{'is-invalid':form.get('nic').touched && form.get('nic').invalid}">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Username</label>
+                                        <input type="text" class="form-control" name="userName" [(ngModel)]="client.userName" minlength="2" maxlength="12" formControlName="userName" [ngClass]="{'is-invalid':form.get('userName').touched && form.get('userName').invalid}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Email address</label>
+                                        <input type="email" class="form-control" name="email" [(ngModel)]="client.email" formControlName="email" [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid }">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Fist Name</label>
+                                        <input type="text" class="form-control" name="firstName" [(ngModel)]="client.firstName" formControlName="firstName" [ngClass]="{'is-invalid':form.get('firstName').touched && form.get('firstName').invalid}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Last Name</label>
+                                        <input type="text" class="form-control" name="lastName" [(ngModel)]="client.lastName" formControlName="lastName" [ngClass]="{'is-invalid':form.get('lastName').touched && form.get('lastName').invalid}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Adress</label>
+                                        <input type="text" class="form-control" name="address" [(ngModel)]="client.address" formControlName="address" [ngClass]="{'is-invalid':form.get('address').touched && form.get('address').invalid}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Contact No</label>
+                                        <input type="tel" pattern="[0-9]{10}" class="form-control" name="phone" [(ngModel)]="client.phone" formControlName="phone" [ngClass]="{'is-invalid':form.get('phone').touched && form.get('phone').invalid}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Country</label>
+                                        <input type="text" class="form-control" name="country" [(ngModel)]="client.country" minlength="2" maxlength="12" formControlName="country" [ngClass]="{'is-invalid':form.get('country').touched && form.get('country').invalid}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Postal Code</label>
+                                        <input type="text" class="form-control" name="postal" [(ngModel)]="client.postal" minlength="2" maxlength="12" formControlName="postal" [ngClass]="{'is-invalid':form.get('postal').touched && form.get('postal').invalid}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>About Client</label>
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                            <textarea class="form-control" rows="5" name="aboutCus" [(ngModel)]="client.aboutCus" formControlName="aboutCus" [ngClass]="{'is-invalid':form.get('aboutCus').touched && form.get('aboutCus').invalid }"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-rose pull-right" (click)="addClient()">Add New Client</button>
+                            <div class="clearfix"></div>
+                        </form>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
+
+<!--End Add Details-->
+
+
+<!---search Client--->
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header card-header-rose card-header-icon">
+            <div class="card-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h4 class="card-title">Search Client</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div style="margin-left: 35%; width: 50%">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Search By Name or NIC</label>
+                        <input (keyup)="searchClientByNIC($event)" [(ngModel)]="searchClientNIC"  class="form-control"
+                               type="text">
+                    </div>
+                </div>
+                <div style="margin-left: 90%; margin-top: -5%">
+                    <button class="btn btn-rose pull-right" type="submit">
+                        <i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Search-->
+
+
+<!--Start Edit -->
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-rose">
+                        <div class="card-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4 class="card-title">View & Edit Client -
+                            <small class="category">Complete your profile</small>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating"> Client NIC </label>
+                                    <input type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Username</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Email address</label>
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Fist Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Last Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Adress</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Contact No</label>
+                                    <input type="tel" pattern="[0-9]{10}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Country</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Postal Code</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>About Client</label>
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                        <textarea class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-rose pull-right">Update Client</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
