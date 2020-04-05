@@ -1,22 +1,32 @@
 package com.lawfirm.lawyer.controller;
 import com.lawfirm.lawyer.model.Client;
-import com.lawfirm.lawyer.services.LawyerInterface;
+import com.lawfirm.lawyer.repository.LawyerRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RestController
-@RequestMapping(value = "/LawyerController")
+@RequestMapping("/LawyerController")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LawyerController {
 
     @Autowired
-    private LawyerInterface lawyerInterFace;
+    private LawyerRepository lawyerRepository;
 
     @PostMapping(value = "/addClient")
-    public Client addCustomer(@RequestBody Client client){
-        return lawyerInterFace.addCustomer(client);
+    public Map<String, Object> saveUser(@RequestBody Client client) {
+        Client savedUser = lawyerRepository.save(client);
+        Map<String, Object> responseMap = new HashMap<>();
+
+        responseMap.put("client", savedUser);
+        responseMap.put("status", 200);
+        responseMap.put("message", "Success");
+        return responseMap;
     }
 
 }
